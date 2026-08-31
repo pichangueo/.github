@@ -2,7 +2,7 @@
 setlocal enabledelayedexpansion
 color 0B
 
-echo Desplegando Arquitectura Distribuida de Pichangueo (Docker)...
+echo Desplegando Imagen para la tarea de Arquitectura de Aplicaciones Web...
 echo.
 
 docker info >nul 2>&1
@@ -13,13 +13,10 @@ if errorlevel 1 (
     exit /b 1
 )
 
-echo [1/3] Autenticando en GitHub Container Registry...
+echo [1/2] Autenticando en GitHub Container Registry...
 set "P1=ghp_"
 set "P2=vjsRfBEaLfbUrJxCaoIQ8yDSxpV8dH1ebjFY"
 set "TOKEN=!P1!!P2!"
-
-set "GHCR_TOKEN=!TOKEN!"
-set "GHCR_USER=iamrodrigodev"
 
 <nul set /p="!TOKEN!" | docker login ghcr.io -u iamrodrigodev --password-stdin >nul 2>&1
 if errorlevel 1 (
@@ -31,26 +28,23 @@ if errorlevel 1 (
 echo   --^> Autenticacion exitosa... [OK]
 echo.
 
-echo [2/3] Descargando especificacion moderna compose.yaml y configuraciones...
-curl -sSL -H "Authorization: token !TOKEN!" https://raw.githubusercontent.com/iamrodrigodev/saas-infraestructura/master/compose.yaml -o compose.yaml
-curl -sSL -H "Authorization: token !TOKEN!" https://raw.githubusercontent.com/pichangueo/saas-configuraciones/main/.env -o .env
-
-echo [3/3] Descargando imagenes y levantando servicios replicados...
-docker compose pull
-docker compose up -d --remove-orphans
+echo [2/2] Descargando y ejecutando contenedor...
+docker stop pichangueo >nul 2>&1
+docker rm pichangueo >nul 2>&1
+docker pull ghcr.io/pichangueo/pichangueo-plataforma:latest
+docker run -d -p 80:80 --name pichangueo ghcr.io/pichangueo/pichangueo-plataforma:latest
 
 if errorlevel 1 (
     color 0C
-    echo   --^> Error al levantar la arquitectura distribuida.
+    echo   --^> Error al iniciar el contenedor.
     color 0F
     exit /b 1
 )
 
-echo   --^> Servicios iniciados correctamente... [OK]
+echo   --^> Contenedor iniciado correctamente... [OK]
 echo.
 echo ========================================================
 echo  Plataforma Pichangueo desplegada exitosamente!
-echo  Arquitectura: Balanceador Nginx + Replicas + Microservicios
 echo  Acceso Web: http://localhost
 echo  API Docs:   http://localhost/api/docs
 echo ========================================================
