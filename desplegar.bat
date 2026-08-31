@@ -2,7 +2,7 @@
 setlocal enabledelayedexpansion
 color 0B
 
-echo Desplegando Imagen para la tarea de Arquitectura de Aplicaciones Web...
+echo Desplegando Arquitectura Distribuida de Pichangueo (Docker)...
 echo.
 
 docker info >nul 2>&1
@@ -13,7 +13,7 @@ if errorlevel 1 (
     exit /b 1
 )
 
-echo [1/2] Autenticando en GitHub Container Registry...
+echo [1/3] Autenticando en GitHub Container Registry...
 set "P1=ghp_"
 set "P2=vjsRfBEaLfbUrJxCaoIQ8yDSxpV8dH1ebjFY"
 set "TOKEN=!P1!!P2!"
@@ -28,23 +28,26 @@ if errorlevel 1 (
 echo   --^> Autenticacion exitosa... [OK]
 echo.
 
-echo [2/2] Descargando y ejecutando contenedor...
-docker stop pichangueo >nul 2>&1
-docker rm pichangueo >nul 2>&1
-docker pull ghcr.io/pichangueo/pichangueo-plataforma:latest
-docker run -d -p 80:80 --name pichangueo ghcr.io/pichangueo/pichangueo-plataforma:latest
+echo [2/3] Descargando configuraciones y orquestador...
+curl -sSL -H "Authorization: token !TOKEN!" https://raw.githubusercontent.com/iamrodrigodev/saas-infraestructura/master/docker-compose.yml -o docker-compose.yml
+curl -sSL -H "Authorization: token !TOKEN!" https://raw.githubusercontent.com/pichangueo/saas-configuraciones/main/.env -o .env
+
+echo [3/3] Descargando imagenes y levantando servicios replicados...
+docker compose pull
+docker compose up -d --remove-orphans
 
 if errorlevel 1 (
     color 0C
-    echo   --^> Error al iniciar el contenedor.
+    echo   --^> Error al levantar la arquitectura distribuida.
     color 0F
     exit /b 1
 )
 
-echo   --^> Contenedor iniciado correctamente... [OK]
+echo   --^> Servicios iniciados correctamente... [OK]
 echo.
 echo ========================================================
 echo  Plataforma Pichangueo desplegada exitosamente!
+echo  Arquitectura: Balanceador Nginx + Replicas + Microservicios
 echo  Acceso Web: http://localhost
 echo  API Docs:   http://localhost/api/docs
 echo ========================================================
