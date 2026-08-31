@@ -91,7 +91,10 @@ Descargue el script correspondiente a su sistema operativo para iniciar la plata
 
 1. Haga clic en el script correspondiente a su sistema operativo (`desplegar.bat` o `desplegar.sh`) en la tabla anterior para descargarlo directamente a su equipo con 1 solo clic.
 2. Ejecute el script descargado:
-   * **En Windows:** Haga doble clic sobre `desplegar.bat` (o ejecute `.\desplegar.bat` en su terminal).
+   * **En Windows:** Haga doble clic sobre `desplegar.bat` o ejecute:
+     ```cmd
+     .\desplegar.bat
+     ```
    * **En Linux / macOS:** Abra una terminal y ejecute:
      ```bash
      chmod +x desplegar.sh && ./desplegar.sh
