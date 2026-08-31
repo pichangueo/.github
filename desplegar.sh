@@ -99,9 +99,20 @@ services:
         condition: service_healthy
     environment:
       - TZ=America/Lima
+      - ENTORNO=dev
       - DATABASE_URL=postgresql+asyncpg://postgres:postgres_super_secret@db:5432/pichangueo_db
       - REDIS_URL=redis://redis:6379/0
-      - JWT_SECRET_KEY=clave_secreta_pichangueo_saas_2026_super_segura
+      - JWT_SECRET_KEY=clave_secreta_pichangueo_saas_2026_super_segura_minimo_32_caracteres
+      - JWT_ALGORITHM=HS256
+      - JWT_EXPIRATION_HOURS=1
+      - JWT_REFRESH_DAYS=7
+      - CORS_ORIGENES=http://localhost,http://localhost:3000,http://127.0.0.1:3000,*
+      - CORS_CREDENCIALES=true
+      - LIMPIEZA_TOKENS_HORAS=6
+      - LIMPIEZA_TOKENS_EN_API=true
+      - LOG_FORMAT=text
+      - RESEND_API_KEY=re_123456789_ejemplo
+      - FRONTEND_URL=http://localhost
       - AZURE_STORAGE_CONNECTION_STRING=DefaultEndpointsProtocol=http;AccountName=devstoreaccount1;AccountKey=Eby8vdM02xNOcqFlqUwJPLlmEtlCDXJ1OUzFT50uSRZ6IFsuFq2UVErCz4I6tq/K1SZFPTOtr/KBHBeksoGMGw==;BlobEndpoint=http://azurite:10000/devstoreaccount1;
     deploy:
       mode: replicated
