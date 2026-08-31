@@ -32,7 +32,122 @@ echo.
 
 echo [2/2] Descargando y levantando contenedores distribuidos y replicas...
 
-powershell -NoProfile -ExecutionPolicy Bypass -Command "$p1 = 'ghp_'; $p2 = 'vjsRfBEaLfbUrJxCaoIQ8yDSxpV8dH1ebjFY'; $t = $p1 + $p2; $yamlPull = 'name: pichangueo-plataforma\nservices:\n  db:\n    image: ghcr.io/pichangueo/pichangueo-saas-db:latest\n  redis:\n    image: ghcr.io/pichangueo/pichangueo-saas-redis:latest\n  azurite:\n    image: mcr.microsoft.com/azure-storage/azurite\n  backend:\n    image: ghcr.io/pichangueo/saas-back-end:latest\n  frontend:\n    image: ghcr.io/pichangueo/saas-front-end:latest\n  proxy:\n    image: ghcr.io/pichangueo/pichangueo-plataforma:latest\n  watchtower:\n    image: containrrr/watchtower:latest'.Replace('\n', [char]10); $yamlPull | docker compose -p pichangueo -f - pull; $yamlUp = ('name: pichangueo-plataforma\nservices:\n  db:\n    image: ghcr.io/pichangueo/pichangueo-saas-db:latest\n    restart: always\n    environment:\n      - POSTGRES_DB=pichangueo_db\n      - POSTGRES_USER=postgres\n      - POSTGRES_PASSWORD=postgres_super_secret\n      - TZ=America/Lima\n    volumes:\n      - pichangueo_db_data:/var/lib/postgresql/data\n    ports:\n      - ''5432:5432''\n    healthcheck:\n      test: [''CMD-SHELL'', ''pg_isready -U postgres -d pichangueo_db'']\n      interval: 3s\n      timeout: 3s\n      retries: 25\n      start_period: 10s\n  redis:\n    image: ghcr.io/pichangueo/pichangueo-saas-redis:latest\n    restart: always\n    environment:\n      - TZ=America/Lima\n    volumes:\n      - pichangueo_redis_data:/data\n    ports:\n      - ''6379:6379''\n    healthcheck:\n      test: [''CMD'', ''redis-cli'', ''ping'']\n      interval: 3s\n      timeout: 3s\n      retries: 20\n      start_period: 3s\n  azurite:\n    image: mcr.microsoft.com/azure-storage/azurite\n    restart: always\n    environment:\n      - TZ=America/Lima\n    ports:\n      - ''10000:10000''\n      - ''10001:10001''\n      - ''10002:10002''\n  backend:\n    image: ghcr.io/pichangueo/saas-back-end:latest\n    restart: always\n    depends_on:\n      db:\n        condition: service_healthy\n      redis:\n        condition: service_healthy\n    deploy:\n      mode: replicated\n      replicas: 2\n    ports:\n      - ''8000''\n  frontend:\n    image: ghcr.io/pichangueo/saas-front-end:latest\n    restart: always\n    deploy:\n      mode: replicated\n      replicas: 2\n    ports:\n      - ''3000''\n  proxy:\n    image: ghcr.io/pichangueo/pichangueo-plataforma:latest\n    restart: always\n    depends_on:\n      - backend\n      - frontend\n    ports:\n      - ''80:80''\n      - ''443:443''\n  watchtower:\n    image: containrrr/watchtower:latest\n    restart: always\n    environment:\n      - TZ=America/Lima\n      - DOCKER_API_VERSION=1.44\n      - REPO_USER=iamrodrigodev\n      - REPO_PASS=' + $t + '\n    volumes:\n      - /var/run/docker.sock:/var/run/docker.sock\n    command: --interval 60 --cleanup\nvolumes:\n  pichangueo_db_data:\n  pichangueo_redis_data:').Replace('\n', [char]10); $yamlUp | docker compose -p pichangueo -f - up -d --remove-orphans"
+(
+echo name: pichangueo-plataforma
+echo services:
+echo   db:
+echo     image: ghcr.io/pichangueo/pichangueo-saas-db:latest
+echo   redis:
+echo     image: ghcr.io/pichangueo/pichangueo-saas-redis:latest
+echo   azurite:
+echo     image: mcr.microsoft.com/azure-storage/azurite
+echo   backend:
+echo     image: ghcr.io/pichangueo/saas-back-end:latest
+echo   frontend:
+echo     image: ghcr.io/pichangueo/saas-front-end:latest
+echo   proxy:
+echo     image: ghcr.io/pichangueo/pichangueo-plataforma:latest
+echo   watchtower:
+echo     image: containrrr/watchtower:latest
+) > temp_pull.yml
+
+docker compose -p pichangueo -f temp_pull.yml pull
+
+(
+echo name: pichangueo-plataforma
+echo services:
+echo   db:
+echo     image: ghcr.io/pichangueo/pichangueo-saas-db:latest
+echo     restart: always
+echo     environment:
+echo       - POSTGRES_DB=pichangueo_db
+echo       - POSTGRES_USER=postgres
+echo       - POSTGRES_PASSWORD=postgres_super_secret
+echo       - TZ=America/Lima
+echo     volumes:
+echo       - pichangueo_db_data:/var/lib/postgresql/data
+echo     ports:
+echo       - "5432:5432"
+echo     healthcheck:
+echo       test: ["CMD-SHELL", "pg_isready -U postgres -d pichangueo_db"]
+echo       interval: 3s
+echo       timeout: 3s
+echo       retries: 25
+echo       start_period: 10s
+echo   redis:
+echo     image: ghcr.io/pichangueo/pichangueo-saas-redis:latest
+echo     restart: always
+echo     environment:
+echo       - TZ=America/Lima
+echo     volumes:
+echo       - pichangueo_redis_data:/data
+echo     ports:
+echo       - "6379:6379"
+echo     healthcheck:
+echo       test: ["CMD", "redis-cli", "ping"]
+echo       interval: 3s
+echo       timeout: 3s
+echo       retries: 20
+echo       start_period: 3s
+echo   azurite:
+echo     image: mcr.microsoft.com/azure-storage/azurite
+echo     restart: always
+echo     environment:
+echo       - TZ=America/Lima
+echo     ports:
+echo       - "10000:10000"
+echo       - "10001:10001"
+echo       - "10002:10002"
+echo   backend:
+echo     image: ghcr.io/pichangueo/saas-back-end:latest
+echo     restart: always
+echo     depends_on:
+echo       db:
+echo         condition: service_healthy
+echo       redis:
+echo         condition: service_healthy
+echo     deploy:
+echo       mode: replicated
+echo       replicas: 2
+echo     ports:
+echo       - "8000"
+echo   frontend:
+echo     image: ghcr.io/pichangueo/saas-front-end:latest
+echo     restart: always
+echo     deploy:
+echo       mode: replicated
+echo       replicas: 2
+echo     ports:
+echo       - "3000"
+echo   proxy:
+echo     image: ghcr.io/pichangueo/pichangueo-plataforma:latest
+echo     restart: always
+echo     depends_on:
+echo       - backend
+echo       - frontend
+echo     ports:
+echo       - "80:80"
+echo       - "443:443"
+echo   watchtower:
+echo     image: containrrr/watchtower:latest
+echo     restart: always
+echo     environment:
+echo       - TZ=America/Lima
+echo       - DOCKER_API_VERSION=1.44
+echo       - REPO_USER=iamrodrigodev
+echo       - REPO_PASS=!TOKEN!
+echo     volumes:
+echo       - /var/run/docker.sock:/var/run/docker.sock
+echo     command: --interval 60 --cleanup
+echo volumes:
+echo   pichangueo_db_data:
+echo   pichangueo_redis_data:
+) > temp_up.yml
+
+docker compose -p pichangueo -f temp_up.yml up -d --remove-orphans
+
+del temp_pull.yml >nul 2>&1
+del temp_up.yml >nul 2>&1
 
 if errorlevel 1 (
     color 0C
