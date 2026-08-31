@@ -10,6 +10,7 @@ if errorlevel 1 (
     color 0C
     echo Error: Docker no parece estar ejecutandose. Por favor inicia Docker Desktop.
     color 0F
+    pause
     exit /b 1
 )
 
@@ -23,6 +24,7 @@ if errorlevel 1 (
     color 0C
     echo   --^> Error: No se pudo autenticar en el registro de contenedores.
     color 0F
+    pause
     exit /b 1
 )
 echo   --^> Autenticacion exitosa... [OK]
@@ -36,6 +38,7 @@ if errorlevel 1 (
     color 0C
     echo   --^> Error al levantar la arquitectura distribuida.
     color 0F
+    pause
     exit /b 1
 )
 
