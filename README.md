@@ -4,6 +4,34 @@ Plataforma integral para la administración, reserva de canchas deportivas y ges
 
 ![Next.js](https://img.shields.io/badge/Next.js-black?style=for-the-badge&logo=next.js&logoColor=white) ![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB) ![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white) ![Tailwind](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white) ![FastAPI](https://img.shields.io/badge/FastAPI-009688?style=for-the-badge&logo=fastapi&logoColor=white) ![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white) ![PostgreSQL](https://img.shields.io/badge/PostgreSQL-316192?style=for-the-badge&logo=postgresql&logoColor=white) ![Redis](https://img.shields.io/badge/Redis-DC382D?style=for-the-badge&logo=redis&logoColor=white) ![Docker](https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white) ![NGINX](https://img.shields.io/badge/Nginx-009639?style=for-the-badge&logo=nginx&logoColor=white)
 
+## Despliegue de Prueba de la Aplicación
+
+Descargue el script correspondiente a su sistema operativo para iniciar la plataforma con 1 solo clic:
+
+| Sistema Operativo | Script de Despliegue | Modo de Ejecución |
+| :--- | :--- | :--- |
+| **Windows** | [**`desplegar.bat`**](https://github.com/pichangueo/.github/releases/download/v1.0.0/desplegar.bat) | Descargar y hacer doble clic sobre el archivo |
+| **Linux / macOS** | [**`desplegar.sh`**](https://github.com/pichangueo/.github/releases/download/v1.0.0/desplegar.sh) | `chmod +x desplegar.sh && ./desplegar.sh` |
+
+
+## Instrucciones de Uso
+
+1. Haga clic en el script correspondiente a su sistema operativo (`desplegar.bat` o `desplegar.sh`) en la tabla anterior para descargarlo directamente a su equipo con 1 solo clic.
+2. Ejecute el script descargado:
+   * **En Windows:** Haga doble clic sobre `desplegar.bat` o ejecute:
+     ```cmd
+     .\desplegar.bat
+     ```
+   * **En Linux / macOS:** Abra una terminal y ejecute:
+     ```bash
+     chmod +x desplegar.sh && ./desplegar.sh
+     ```
+3. El script autenticará con el registro, descargará la imagen y levantará el contenedor automáticamente.
+4. Una vez finalizado, acceda a la plataforma desde su navegador:
+   * **Aplicación Web:** [http://localhost](http://localhost)
+   * **Documentación de la API (Swagger):** [http://localhost/api/docs](http://localhost/api/docs)
+
+
 ## Arquitectura del Sistema
 
 El proyecto esta construido bajo una arquitectura N-Capas avanzado orientado a dominios (Modular Monolith) e incluye las siguientes tecnologias y componentes:
@@ -76,30 +104,3 @@ pichangueo/
     ├── compose.yaml                # Orquestación principal de los servicios (Docker)
     └── Dockerfile                  # Construcción de las imágenes
 ```
-
-## Despliegue de la Aplicación
-
-Descargue el script correspondiente a su sistema operativo para iniciar la plataforma con 1 solo clic:
-
-| Sistema Operativo | Script de Despliegue | Modo de Ejecución |
-| :--- | :--- | :--- |
-| **Windows** | [**`desplegar.bat`**](https://github.com/pichangueo/.github/releases/download/v1.0.0/desplegar.bat) | Descargar y hacer doble clic sobre el archivo |
-| **Linux / macOS** | [**`desplegar.sh`**](https://github.com/pichangueo/.github/releases/download/v1.0.0/desplegar.sh) | `chmod +x desplegar.sh && ./desplegar.sh` |
-
-
-## Instrucciones de Uso
-
-1. Haga clic en el script correspondiente a su sistema operativo (`desplegar.bat` o `desplegar.sh`) en la tabla anterior para descargarlo directamente a su equipo con 1 solo clic.
-2. Ejecute el script descargado:
-   * **En Windows:** Haga doble clic sobre `desplegar.bat` o ejecute:
-     ```cmd
-     .\desplegar.bat
-     ```
-   * **En Linux / macOS:** Abra una terminal y ejecute:
-     ```bash
-     chmod +x desplegar.sh && ./desplegar.sh
-     ```
-3. El script autenticará con el registro, descargará la imagen y levantará el contenedor automáticamente.
-4. Una vez finalizado, acceda a la plataforma desde su navegador:
-   * **Aplicación Web:** [http://localhost](http://localhost)
-   * **Documentación de la API (Swagger):** [http://localhost/api/docs](http://localhost/api/docs)
