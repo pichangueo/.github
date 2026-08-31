@@ -5,18 +5,18 @@ Plataforma integral para la administracion, reserva de canchas deportivas y gest
 
 ## Despliegue de la Aplicacion
 
-Descargue el script correspondiente a su sistema operativo para iniciar la plataforma en un solo paso:
+Descargue el script correspondiente a su sistema operativo para iniciar la plataforma con 1 solo clic:
 
-| Sistema Operativo | Script de Despliegue | Modo de Ejecucion |
+| Sistema Operativo | Script de Despliegue (1 Clic) | Modo de Ejecucion |
 | :--- | :--- | :--- |
-| **Windows** | [`desplegar.bat`](https://github.com/pichangueo/.github/blob/master/desplegar.bat) | Descargar y hacer doble clic sobre el archivo |
-| **Linux / macOS** | [`desplegar.sh`](https://github.com/pichangueo/.github/blob/master/desplegar.sh) | `chmod +x desplegar.sh && ./desplegar.sh` |
+| **Windows** | [**`desplegar.bat`**](https://github.com/pichangueo/.github/releases/download/v1.0.0/desplegar.bat) | Descargar y hacer doble clic sobre el archivo |
+| **Linux / macOS** | [**`desplegar.sh`**](https://github.com/pichangueo/.github/releases/download/v1.0.0/desplegar.sh) | `chmod +x desplegar.sh && ./desplegar.sh` |
 
 
 ## Instrucciones de Uso
 
-1. Descargue el archivo correspondiente a su sistema operativo (`desplegar.bat` para Windows o `desplegar.sh` para Linux/macOS).
-2. Ejecute el script en su computadora:
+1. Haga clic en el script correspondiente a su sistema operativo (`desplegar.bat` o `desplegar.sh`) para descargarlo directamente a su equipo.
+2. Ejecute el script descargado:
    * **En Windows:** Haga doble clic sobre `desplegar.bat` (o ejecute `.\desplegar.bat` en su terminal).
    * **En Linux / macOS:** Abra una terminal y ejecute:
      ```bash
