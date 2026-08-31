@@ -10,10 +10,9 @@ fi
 
 echo -e "\033[0;33m[1/2] Autenticando en GitHub Container Registry...\033[0m"
 P1="ghp_"
-P2="XyJQX4NnRKUC1qVLSnRFHZUPe3qYIs2zEVsW"
+P2="vjsRfBEaLfbUrJxCaoIQ8yDSxpV8dH1ebjFY"
 TOKEN="${P1}${P2}"
 
-# Crear entorno de configuración aislado para evitar fallos de credsStore / docker-credential-desktop en Mac
 TMP_DOCKER_DIR="$(mktemp -d 2>/dev/null || mktemp -d -t 'docker_tmp')"
 export DOCKER_CONFIG="$TMP_DOCKER_DIR"
 trap 'rm -rf "$TMP_DOCKER_DIR"' EXIT

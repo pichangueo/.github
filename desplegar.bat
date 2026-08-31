@@ -15,7 +15,7 @@ if errorlevel 1 (
 
 echo [1/2] Autenticando en GitHub Container Registry...
 set "P1=ghp_"
-set "P2=XyJQX4NnRKUC1qVLSnRFHZUPe3qYIs2zEVsW"
+set "P2=vjsRfBEaLfbUrJxCaoIQ8yDSxpV8dH1ebjFY"
 set "TOKEN=!P1!!P2!"
 
 <nul set /p="!TOKEN!" | docker login ghcr.io -u iamrodrigodev --password-stdin >nul 2>&1
