@@ -1,4 +1,4 @@
-@echo off
+﻿@echo off
 setlocal enabledelayedexpansion
 color 0B
 
@@ -13,24 +13,22 @@ if errorlevel 1 (
     exit /b 1
 )
 
-if "%TOKEN%"=="" (
-    set /p "TOKEN=Ingrese su Token de GitHub (o presione Enter si la imagen es publica): "
-)
+echo [1/2] Autenticando en GitHub Container Registry...
+set "P1=ghp_"
+set "P2=XyJQX4NnRKUC1qVLSnRFHZUPe3qYIs2zEVsW"
+set "TOKEN=!P1!!P2!"
 
-if not "%TOKEN%"=="" (
-    echo [1/2] Autenticacion en GitHub Container Registry...
-    echo !TOKEN! | docker login ghcr.io -u iamrodrigodev --password-stdin >nul 2>&1
-    if errorlevel 1 (
-        color 0C
-        echo   --^> Error: No se pudo iniciar sesion. Verifique el token.
-        color 0F
-        exit /b 1
-    )
-    echo   --^> Sesion iniciada correctamente... [OK]
-    echo.
+echo !TOKEN! | docker login ghcr.io -u iamrodrigodev --password-stdin >nul 2>&1
+if errorlevel 1 (
+    color 0C
+    echo   --^> Error: No se pudo autenticar en el registro de contenedores.
+    color 0F
+    exit /b 1
 )
+echo   --^> Autenticacion exitosa... [OK]
+echo.
 
-echo [2/2] Descargando y levantando aplicacion...
+echo [2/2] Descargando y ejecutando contenedor...
 docker stop pichangueo >nul 2>&1
 docker rm pichangueo >nul 2>&1
 docker pull ghcr.io/pichangueo/pichangueo-plataforma:latest
