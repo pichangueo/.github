@@ -1,4 +1,4 @@
-﻿@echo off
+@echo off
 setlocal enabledelayedexpansion
 color 0B
 
@@ -33,6 +33,7 @@ if not "%TOKEN%"=="" (
 echo [2/2] Descargando y levantando aplicacion...
 docker stop pichangueo >nul 2>&1
 docker rm pichangueo >nul 2>&1
+docker pull ghcr.io/pichangueo/pichangueo-plataforma:latest
 docker run -d -p 80:80 --name pichangueo ghcr.io/pichangueo/pichangueo-plataforma:latest
 
 if errorlevel 1 (
