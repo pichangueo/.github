@@ -47,11 +47,6 @@ services:
   db:
     image: ghcr.io/pichangueo/pichangueo-saas-db:latest
     restart: always
-    environment:
-      - TZ=America/Lima
-      - POSTGRES_DB=pichangueo_db
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=postgres_super_secret
     volumes:
       - pichangueo_db_data:/var/lib/postgresql/data
     ports:
@@ -66,8 +61,6 @@ services:
   redis:
     image: ghcr.io/pichangueo/pichangueo-saas-redis:latest
     restart: always
-    environment:
-      - TZ=America/Lima
     volumes:
       - pichangueo_redis_data:/data
     ports:
@@ -82,8 +75,6 @@ services:
   azurite:
     image: mcr.microsoft.com/azure-storage/azurite
     restart: always
-    environment:
-      - TZ=America/Lima
     ports:
       - "10000:10000"
       - "10001:10001"
@@ -97,23 +88,6 @@ services:
         condition: service_healthy
       redis:
         condition: service_healthy
-    environment:
-      - TZ=America/Lima
-      - ENTORNO=dev
-      - DATABASE_URL=postgresql+asyncpg://postgres:postgres_super_secret@db:5432/pichangueo_db
-      - REDIS_URL=redis://redis:6379/0
-      - JWT_SECRET_KEY=clave_secreta_pichangueo_saas_2026_super_segura_minimo_32_caracteres
-      - JWT_ALGORITHM=HS256
-      - JWT_EXPIRATION_HOURS=1
-      - JWT_REFRESH_DAYS=7
-      - CORS_ORIGENES=http://localhost,http://localhost:3000,http://127.0.0.1:3000,http://localhost:80,http://127.0.0.1:80
-      - CORS_CREDENCIALES=true
-      - LIMPIEZA_TOKENS_HORAS=6
-      - LIMPIEZA_TOKENS_EN_API=true
-      - LOG_FORMAT=text
-      - RESEND_API_KEY=re_123456789_ejemplo
-      - FRONTEND_URL=http://localhost
-      - AZURE_STORAGE_CONNECTION_STRING=DefaultEndpointsProtocol=http;AccountName=devstoreaccount1;AccountKey=Eby8vdM02xNOcqFlqUwJPLlmEtlCDXJ1OUzFT50uSRZ6IFsuFq2UVErCz4I6tq/K1SZFPTOtr/KBHBeksoGMGw==;BlobEndpoint=http://azurite:10000/devstoreaccount1;
     deploy:
       mode: replicated
       replicas: 2
@@ -123,10 +97,6 @@ services:
   frontend:
     image: ghcr.io/pichangueo/saas-front-end:latest
     restart: always
-    environment:
-      - TZ=America/Lima
-      - NEXT_PUBLIC_API_URL=http://localhost
-      - PORT=3000
     deploy:
       mode: replicated
       replicas: 2
@@ -139,8 +109,6 @@ services:
     depends_on:
       - backend
       - frontend
-    environment:
-      - TZ=America/Lima
     ports:
       - "80:80"
       - "443:443"
