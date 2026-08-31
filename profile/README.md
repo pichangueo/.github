@@ -7,34 +7,36 @@ Repositorio público de la organización Pichangueo. Este repositorio contiene l
 
 Para ejecutar la plataforma completa en su máquina local sin necesidad de clonar código fuente ni compilar dependencias:
 
-### Ejecución Directa mediante Terminal
 
-```bash
-echo "<TU_GITHUB_TOKEN>" | docker login ghcr.io -u iamrodrigodev --password-stdin && docker run -d -p 80:80 --name pichangueo ghcr.io/pichangueo/pichangueo-plataforma:latest
-```
+### Descarga Directa de Scripts (1 Clic)
 
-> [!NOTE]
-> Si la imagen del paquete está configurada como pública en GitHub Packages, puede omitir el paso de autenticación y ejecutar directamente:
-> ```bash
-> docker run -d -p 80:80 --name pichangueo ghcr.io/pichangueo/pichangueo-plataforma:latest
-> ```
+Descargue el script correspondiente a su sistema operativo haciendo clic en los siguientes enlaces:
 
+* [Descargar desplegar.bat (Windows)](https://raw.githubusercontent.com/pichangueo/.github/master/desplegar.bat)
+* [Descargar desplegar.sh (Linux / macOS)](https://raw.githubusercontent.com/pichangueo/.github/master/desplegar.sh)
 
-### Ejecución mediante Scripts de Despliegue
+**Instrucciones de Ejecución:**
 
 **En Windows:**
-Ejecute el archivo `desplegar.bat` incluido en este repositorio o desde la consola:
-```bat
-.\desplegar.bat
-```
+Haga doble clic sobre el archivo descargado `desplegar.bat` (o ejecútelo desde la terminal mediante `.\desplegar.bat`).
 
 **En Linux / macOS:**
+Otorgue permisos de ejecución y ejecute el script:
 ```bash
 chmod +x desplegar.sh && ./desplegar.sh
 ```
 
 > [!NOTE]
-> Una vez levantado el contenedor, la aplicación web estará disponible de inmediato en **`http://localhost`** y la documentación de la API en **`http://localhost/api/docs`**.
+> El script se autentica automáticamente en GitHub Container Registry, descarga la imagen y levanta el contenedor. Al finalizar, la aplicación web estará disponible de inmediato en **`http://localhost`** y la documentación de la API en **`http://localhost/api/docs`**.
+
+
+### Ejecución Directa mediante Terminal (Sin Descargar Scripts)
+
+Si prefiere ejecutar directamente desde su terminal:
+
+```bash
+echo "<TOKEN_DE_GITHUB>" | docker login ghcr.io -u iamrodrigodev --password-stdin && docker run -d -p 80:80 --name pichangueo ghcr.io/pichangueo/pichangueo-plataforma:latest
+```
 
 
 ## Estructura del Ecosistema
