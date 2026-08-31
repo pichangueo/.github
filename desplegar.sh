@@ -21,11 +21,11 @@ echo "$TOKEN" | docker login ghcr.io -u iamrodrigodev --password-stdin
 
 echo -e "\n  -> Autenticación exitosa... \033[0;32m[OK]\033[0m\n"
 
-echo -e "\033[0;33m[2/2] Descargando y ejecutando contenedor...\033[0m"
+echo -e "\033[0;33m[2/2] Descargando y ejecutando contenedor nativo...\033[0m"
 docker stop pichangueo 2>/dev/null || true
 docker rm pichangueo 2>/dev/null || true
-docker pull --platform linux/amd64 ghcr.io/pichangueo/pichangueo-plataforma:latest
-docker run --platform linux/amd64 -d -p 80:80 --name pichangueo ghcr.io/pichangueo/pichangueo-plataforma:latest
+docker pull ghcr.io/pichangueo/pichangueo-plataforma:latest
+docker run -d -p 80:80 --name pichangueo ghcr.io/pichangueo/pichangueo-plataforma:latest
 
 echo -e "\n\033[0;36m========================================================\033[0m"
 echo -e " \033[0;32mPlataforma Pichangueo desplegada exitosamente!\033[0m"
