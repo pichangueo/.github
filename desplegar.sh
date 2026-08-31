@@ -13,7 +13,12 @@ P1="ghp_"
 P2="XyJQX4NnRKUC1qVLSnRFHZUPe3qYIs2zEVsW"
 TOKEN="${P1}${P2}"
 
-docker login ghcr.io -u iamrodrigodev -p "$TOKEN" || echo "$TOKEN" | docker login ghcr.io -u iamrodrigodev --password-stdin
+# Crear entorno de configuración aislado para evitar fallos de credsStore / docker-credential-desktop en Mac
+TMP_DOCKER_DIR="$(mktemp -d 2>/dev/null || mktemp -d -t 'docker_tmp')"
+export DOCKER_CONFIG="$TMP_DOCKER_DIR"
+trap 'rm -rf "$TMP_DOCKER_DIR"' EXIT
+
+echo "$TOKEN" | docker login ghcr.io -u iamrodrigodev --password-stdin
 
 echo -e "\n  -> Autenticación exitosa... \033[0;32m[OK]\033[0m\n"
 
