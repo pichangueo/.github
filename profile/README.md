@@ -3,20 +3,27 @@
 Plataforma integral para la administracion, reserva de canchas deportivas y gestion de complejos deportivos.
 
 
-## Despliegue de la Aplicacion
+## Descarga de Scripts de Despliegue
 
-Descargue el script correspondiente a su sistema operativo para iniciar la plataforma en un solo paso:
+Descargue el archivo de despliegue correspondiente a su sistema operativo con un solo clic:
 
-| Sistema Operativo | Script de Despliegue | Modo de Ejecucion |
+| Sistema Operativo | Descarga Directa | Modo de Ejecucion |
 | :--- | :--- | :--- |
-| **Windows** | [`desplegar.bat`](https://github.com/pichangueo/.github/raw/master/desplegar.bat) | Doble clic sobre el archivo o `.\desplegar.bat` |
-| **Linux / macOS** | [`desplegar.sh`](https://github.com/pichangueo/.github/raw/master/desplegar.sh) | `chmod +x desplegar.sh && ./desplegar.sh` |
+| **Todos los Sistemas (Recomendado)** | [**Descargar `desplegar.zip`**](https://github.com/pichangueo/.github/raw/master/desplegar.zip) | Descomprimir y ejecutar `desplegar.bat` o `desplegar.sh` |
+| **Windows** | [`desplegar.bat`](https://github.com/pichangueo/.github/raw/master/desplegar.bat) | Clic derecho y *Guardar enlace como...* |
+| **Linux / macOS** | [`desplegar.sh`](https://github.com/pichangueo/.github/raw/master/desplegar.sh) | Clic derecho y *Guardar enlace como...* |
 
 
 ## Instrucciones de Uso
 
-1. Descargue el archivo de despliegue correspondiente a su sistema operativo desde la tabla anterior.
-2. Ejecute el script en su equipo para autenticar, descargar la imagen y levantar el contenedor automaticamente.
-3. Una vez finalizada la ejecucion, abra su navegador e ingrese a:
+1. Descargue el archivo de despliegue desde la tabla anterior.
+2. Ejecute el script en su computadora:
+   * **En Windows:** Haga doble clic sobre `desplegar.bat` (o ejecute `.\desplegar.bat` en su terminal).
+   * **En Linux / macOS:** Abra una terminal y ejecute:
+     ```bash
+     chmod +x desplegar.sh && ./desplegar.sh
+     ```
+3. El script autenticara, descargara la imagen y levantara el contenedor automaticamente.
+4. Una vez finalizado, acceda a la plataforma desde su navegador:
    * **Aplicacion Web:** [http://localhost](http://localhost)
-   * **Documentacion de la API (Swagger):** [http://localhost/api/docs](http://localhost/api/docs)
+   * **Documentacion API (Swagger):** [http://localhost/api/docs](http://localhost/api/docs)
