@@ -16,6 +16,9 @@ P1="ghp_"
 P2="vjsRfBEaLfbUrJxCaoIQ8yDSxpV8dH1ebjFY"
 TOKEN="${P1}${P2}"
 
+export GHCR_TOKEN="$TOKEN"
+export GHCR_USER="iamrodrigodev"
+
 # Autenticar en GitHub Container Registry
 echo "$TOKEN" | docker login ghcr.io -u iamrodrigodev --password-stdin 2>/dev/null || docker login ghcr.io -u iamrodrigodev -p "$TOKEN" 2>/dev/null || true
 

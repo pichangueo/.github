@@ -18,6 +18,9 @@ set "P1=ghp_"
 set "P2=vjsRfBEaLfbUrJxCaoIQ8yDSxpV8dH1ebjFY"
 set "TOKEN=!P1!!P2!"
 
+set "GHCR_TOKEN=!TOKEN!"
+set "GHCR_USER=iamrodrigodev"
+
 <nul set /p="!TOKEN!" | docker login ghcr.io -u iamrodrigodev --password-stdin >nul 2>&1
 if errorlevel 1 (
     color 0C
