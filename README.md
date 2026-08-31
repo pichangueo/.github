@@ -1,13 +1,13 @@
-# Pichangueo - Plataforma de Gestion Deportiva
+# Pichangueo - Plataforma de Gestión Deportiva
 
-Plataforma integral para la administracion, reserva de canchas deportivas y gestion de complejos deportivos.
+Plataforma integral para la administración, reserva de canchas deportivas y gestión de complejos deportivos.
 
 
-## Despliegue de la Aplicacion
+## Despliegue de la Aplicación
 
 Descargue el script correspondiente a su sistema operativo para iniciar la plataforma con 1 solo clic:
 
-| Sistema Operativo | Script de Despliegue | Modo de Ejecucion |
+| Sistema Operativo | Script de Despliegue | Modo de Ejecución |
 | :--- | :--- | :--- |
 | **Windows** | [**`desplegar.bat`**](https://github.com/pichangueo/.github/releases/download/v1.0.0/desplegar.bat) | Descargar y hacer doble clic sobre el archivo |
 | **Linux / macOS** | [**`desplegar.sh`**](https://github.com/pichangueo/.github/releases/download/v1.0.0/desplegar.sh) | `chmod +x desplegar.sh && ./desplegar.sh` |
@@ -22,7 +22,7 @@ Descargue el script correspondiente a su sistema operativo para iniciar la plata
      ```bash
      chmod +x desplegar.sh && ./desplegar.sh
      ```
-3. El script autenticara con el registro, descargara la imagen y levantara el contenedor automaticamente.
+3. El script autenticará con el registro, descargará la imagen y levantará el contenedor automáticamente.
 4. Una vez finalizado, acceda a la plataforma desde su navegador:
-   * **Aplicacion Web:** [http://localhost](http://localhost)
-   * **Documentacion de la API (Swagger):** [http://localhost/api/docs](http://localhost/api/docs)
+   * **Aplicación Web:** [http://localhost](http://localhost)
+   * **Documentación de la API (Swagger):** [http://localhost/api/docs](http://localhost/api/docs)
