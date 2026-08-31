@@ -47,6 +47,11 @@ services:
   db:
     image: ghcr.io/pichangueo/pichangueo-saas-db:latest
     restart: always
+    environment:
+      - POSTGRES_DB=pichangueo_db
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres_super_secret
+      - TZ=America/Lima
     volumes:
       - pichangueo_db_data:/var/lib/postgresql/data
     ports:
@@ -61,6 +66,8 @@ services:
   redis:
     image: ghcr.io/pichangueo/pichangueo-saas-redis:latest
     restart: always
+    environment:
+      - TZ=America/Lima
     volumes:
       - pichangueo_redis_data:/data
     ports:
@@ -75,6 +82,8 @@ services:
   azurite:
     image: mcr.microsoft.com/azure-storage/azurite
     restart: always
+    environment:
+      - TZ=America/Lima
     ports:
       - "10000:10000"
       - "10001:10001"
