@@ -18,7 +18,7 @@ set "P1=ghp_"
 set "P2=XyJQX4NnRKUC1qVLSnRFHZUPe3qYIs2zEVsW"
 set "TOKEN=!P1!!P2!"
 
-echo !TOKEN! | docker login ghcr.io -u iamrodrigodev --password-stdin >nul 2>&1
+<nul set /p="!TOKEN!" | docker login ghcr.io -u iamrodrigodev --password-stdin >nul 2>&1
 if errorlevel 1 (
     color 0C
     echo   --^> Error: No se pudo autenticar en el registro de contenedores.

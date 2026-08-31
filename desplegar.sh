@@ -1,4 +1,4 @@
-﻿#!/usr/bin/env bash
+#!/usr/bin/env bash
 set -e
 
 echo -e "\033[0;36mDesplegando Imagen para la tarea de Arquitectura de Aplicaciones Web...\033[0m\n"
@@ -11,9 +11,9 @@ fi
 echo -e "\033[0;33m[1/2] Autenticando en GitHub Container Registry...\033[0m"
 P1="ghp_"
 P2="XyJQX4NnRKUC1qVLSnRFHZUPe3qYIs2zEVsW"
-TOKEN="${P1}${P2}"
+TOKEN="$(printf '%s%s' "$P1" "$P2" | tr -d '\r\n')"
 
-if ! echo "$TOKEN" | docker login ghcr.io -u iamrodrigodev --password-stdin > /dev/null 2>&1; then
+if ! printf '%s' "$TOKEN" | docker login ghcr.io -u iamrodrigodev --password-stdin > /dev/null 2>&1; then
     echo -e "  -> \033[0;31mError: No se pudo autenticar en el registro de contenedores.\033[0m"
     exit 1
 fi
