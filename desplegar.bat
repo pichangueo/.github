@@ -28,8 +28,8 @@ if errorlevel 1 (
 echo   --^> Autenticacion exitosa... [OK]
 echo.
 
-echo [2/3] Descargando configuraciones y orquestador...
-curl -sSL -H "Authorization: token !TOKEN!" https://raw.githubusercontent.com/iamrodrigodev/saas-infraestructura/master/docker-compose.yml -o docker-compose.yml
+echo [2/3] Descargando especificacion moderna compose.yaml y configuraciones...
+curl -sSL -H "Authorization: token !TOKEN!" https://raw.githubusercontent.com/iamrodrigodev/saas-infraestructura/master/compose.yaml -o compose.yaml
 curl -sSL -H "Authorization: token !TOKEN!" https://raw.githubusercontent.com/pichangueo/saas-configuraciones/main/.env -o .env
 
 echo [3/3] Descargando imagenes y levantando servicios replicados...
