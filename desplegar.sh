@@ -106,7 +106,7 @@ services:
       - JWT_ALGORITHM=HS256
       - JWT_EXPIRATION_HOURS=1
       - JWT_REFRESH_DAYS=7
-      - CORS_ORIGENES=http://localhost,http://localhost:3000,http://127.0.0.1:3000,*
+      - CORS_ORIGENES=http://localhost,http://localhost:3000,http://127.0.0.1:3000,http://localhost:80,http://127.0.0.1:80
       - CORS_CREDENCIALES=true
       - LIMPIEZA_TOKENS_HORAS=6
       - LIMPIEZA_TOKENS_EN_API=true
